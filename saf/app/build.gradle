@@ -10,6 +10,8 @@ plugins {
     id 'application'
 }
 
+group = 'saf'
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -23,6 +25,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
+    implementation 'org.ejml:ejml-all:0.46.1'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -34,7 +37,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'saf.App'
+    mainClass = 'saf.Entry'
 }
 
 tasks.named('test') {
