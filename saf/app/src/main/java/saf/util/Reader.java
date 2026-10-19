@@ -16,11 +16,11 @@ public class Reader {
         this.data = new ArrayList<>();
     }
 
-    public String read() {
-
+    public ArrayList<String> read() {
         if (this.type.equalsIgnoreCase("CSV")) {
             try (BufferedReader br = new BufferedReader(new FileReader(this.filepath))) {
                 String line;
+
                 while ((line = br.readLine()) != null) {
                     this.data.add(line);
                 }
@@ -28,7 +28,7 @@ public class Reader {
                 System.err.println("Error reading file: " + e.getMessage());
             }
         }
-        return String.join("\n", this.data);
+        return this.data;
     }
 
     public String getFilepath() {
