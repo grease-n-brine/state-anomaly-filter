@@ -2,10 +2,10 @@ package saf.structure;
 
 public class StateRow {
     private final int sequenceNumber;
-    private final long timestamp;
+    private final TimeCell timestamp;
     private final double[] data;
 
-    public StateRow(int sequenceNumber, long timestamp, double[] data) {
+    public StateRow(int sequenceNumber, TimeCell timestamp, double[] data) {
         this.sequenceNumber = sequenceNumber;
         this.timestamp = timestamp;
         this.data = data;
@@ -15,7 +15,7 @@ public class StateRow {
         return sequenceNumber;
     }
 
-    public long getTimestamp() {
+    public TimeCell getTimestamp() {
         return timestamp;
     }
 
