@@ -11,9 +11,9 @@ public class TimeCell {
     private final int microsecond;
 
     public TimeCell(int[] args) {
-        this.day = args[0];
+        this.year = args[0];
         this.month = args[1];
-        this.year = args[2];
+        this.day = args[2];
         this.hour = args[3];
         this.minute = args[4];
         this.second = args[5];

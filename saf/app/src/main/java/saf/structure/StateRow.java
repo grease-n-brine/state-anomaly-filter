@@ -1,13 +1,13 @@
 package saf.structure;
 
+import java.util.ArrayList;
+
 public class StateRow {
     private final int sequenceNumber;
-    private final TimeCell timestamp;
-    private final double[] data;
+    private final ArrayList<Double> data;
 
-    public StateRow(int sequenceNumber, TimeCell timestamp, double[] data) {
+    public StateRow(int sequenceNumber, ArrayList<Double> data) {
         this.sequenceNumber = sequenceNumber;
-        this.timestamp = timestamp;
         this.data = data;
     }
 
@@ -15,11 +15,7 @@ public class StateRow {
         return sequenceNumber;
     }
 
-    public TimeCell getTimestamp() {
-        return timestamp;
-    }
-
-    public double[] getData() {
+    public ArrayList<Double> getData() {
         return data;
     }
 
