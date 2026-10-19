@@ -25,7 +25,7 @@ public class IngestData {
     }
 
     public ArrayList<StateRow> parse() {
-        ArrayList<StateRow> stateRows = new ArrayList<>();
+        ArrayList<StateRow> stateRows = reader.read();
 
         return stateRows;
     }
