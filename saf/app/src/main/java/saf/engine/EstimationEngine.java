@@ -25,8 +25,6 @@ public class EstimationEngine {
             int sequenceNumber = stateRow.getSequenceNumber();
             ArrayList<Double> values = stateRow.getData();
             int variableCount = values.size();
-
-                
         }
     }
 
