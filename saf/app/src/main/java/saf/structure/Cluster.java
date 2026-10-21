@@ -19,5 +19,11 @@ public class Cluster {
     public Record getCentroid() {
         return centroid;
     }
-    
+
+    public double getCentroidX() {
+        return centroid.getX();
+    }
+    public double getCentroidY() {
+        return centroid.getY();
+    }
 }
