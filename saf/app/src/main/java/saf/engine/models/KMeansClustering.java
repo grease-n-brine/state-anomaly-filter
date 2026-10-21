@@ -20,4 +20,8 @@ public class KMeansClustering {
         this.records = new ArrayList<>();
         Random random = new Random();
     }
+
+    public double euclideanDistance(Record r1, Record r2) {
+        return 0.0;
+    }
 }
