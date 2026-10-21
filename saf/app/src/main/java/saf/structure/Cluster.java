@@ -1,5 +1,6 @@
 package saf.structure;
 
+@SuppressWarnings("FieldMayBeFinal")
 public class Cluster {
     int id;
     private Record centroid;
