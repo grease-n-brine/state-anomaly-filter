@@ -22,6 +22,7 @@ public class KMeansClustering {
     }
 
     public double euclideanDistance(Record r1, Record r2) {
-        return 0.0;
+        return Math.sqrt(Math.pow(r1.getX() - r2.getX(), 2) + 
+                        Math.pow(r1.getY() - r2.getY(), 2));
     }
 }
