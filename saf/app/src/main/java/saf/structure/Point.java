@@ -36,7 +36,7 @@ public class Point {
         if (this.getDimension() != otherPoint.getDimension()) {
             throw new IllegalArgumentException("Points must have the same dimension");
         }
-        
+
         double sum = 0;
 
         for (int i = 0; i < this.getDimension(); i++) {
@@ -48,6 +48,11 @@ public class Point {
     }
 
     public double[] getCoordinates() {
-        return coordinates;
+        return Arrays.copyOf(coordinates, coordinates.length);
+    }
+
+    @Override 
+    public String toString() {
+        return Arrays.toString(coordinates);
     }
 }
