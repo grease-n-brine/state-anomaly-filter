@@ -42,4 +42,18 @@ public class Statistics {
 
         return sum / values.length;
     }
+
+    public static double basselVariance(ArrayList<Double> values) {
+        double variance = variance(values);
+        int n = values.size();
+
+        return variance * n / (n - 1);
+    }
+    
+    public static double basselVariance(double[] values) {
+        double variance = variance(values);
+        int n = values.length;
+        
+        return variance * n / (n - 1);
+    }
 }
