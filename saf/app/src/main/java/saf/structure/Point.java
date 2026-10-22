@@ -24,6 +24,14 @@ public class Point {
         return coordinates[2];
     }
 
+    public int getDimension() {
+        return coordinates.length;
+    }
+
+    public double get(int index) {
+        return coordinates[index];
+    }
+
     public double[] getCoordinates() {
         return coordinates;
     }
