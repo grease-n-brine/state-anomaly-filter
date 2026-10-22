@@ -32,6 +32,21 @@ public class Point {
         return coordinates[index];
     }
 
+    public double getDistanceTo(Point otherPoint) {
+        if (this.getDimension() != otherPoint.getDimension()) {
+            throw new IllegalArgumentException("Points must have the same dimension");
+        }
+        
+        double sum = 0;
+
+        for (int i = 0; i < this.getDimension(); i++) {
+            double diff = this.get(i) - otherPoint.get(i);
+            sum += diff * diff;
+        }
+
+        return Math.sqrt(sum);
+    }
+
     public double[] getCoordinates() {
         return coordinates;
     }
