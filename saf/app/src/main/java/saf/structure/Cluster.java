@@ -3,9 +3,9 @@ package saf.structure;
 @SuppressWarnings("FieldMayBeFinal")
 public class Cluster {
     int id;
-    private Record centroid;
+    private Point centroid;
 
-    public Cluster(Record centroid) {
+    public Cluster(Point centroid) {
         this.centroid = centroid;
     }
 
@@ -17,11 +17,11 @@ public class Cluster {
         this.id = id;
     }
 
-    public Record getCentroid() {
+    public Point getCentroid() {
         return centroid;
     }
 
-    public void setCentroid(Record centroid) {
+    public void setCentroid(Point centroid) {
         this.centroid = centroid;
     }
 
