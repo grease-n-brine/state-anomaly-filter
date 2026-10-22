@@ -1,19 +1,25 @@
 package saf.structure;
 
 public class Point {
-    double x;
-    double y;
+    private final double[] coordinates;
 
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public Point(double[] coordinates) {
+        this.coordinates = coordinates;
     }
 
     public double getX() {
-        return x;
+        return coordinates[0];
+    }
+    
+    public double getY() {
+        return coordinates[1];
     }
 
-    public double getY() {
-        return y;
+    public double getZ() {
+        return coordinates[2];
+    }
+
+    public double[] getCoordinates() {
+        return coordinates;
     }
 }
