@@ -21,6 +21,10 @@ public class Cluster {
         return centroid;
     }
 
+    public void setCentroid(Record centroid) {
+        this.centroid = centroid;
+    }
+
     public double getCentroidX() {
         return centroid.getX();
     }
