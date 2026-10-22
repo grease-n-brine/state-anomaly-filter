@@ -9,6 +9,7 @@ public class Statistics {
         for (double value : values) {
             sum += value;
         }
+
         return sum / values.length;
     }
 
@@ -18,6 +19,7 @@ public class Statistics {
         for (double value : values) {
             sum += value;
         }
+        
         return sum / values.size();
     }
 

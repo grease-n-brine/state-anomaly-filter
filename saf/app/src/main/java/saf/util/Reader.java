@@ -33,13 +33,17 @@ public class Reader {
                     for (String value : values) {
                         rowData.add(Double.valueOf(value));
                     }
+
                     rows.add(new StateRow(rows.size(), rowData));
                 }
+
                 this.data.addAll(rows);
+
             } catch (IOException e) {
                 System.err.println("Error reading file: " + e.getMessage());
             }
         }
+        
         return this.data;
     }
 
