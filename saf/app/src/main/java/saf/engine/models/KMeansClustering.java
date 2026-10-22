@@ -107,7 +107,7 @@ public class KMeansClustering {
 
                 double centroidX = sumX[clusterId] / counts[clusterId];
                 double centroidY = sumY[clusterId] / counts[clusterId];
-                cluster.setCentroid(new Point(centroidX, centroidY));
+                cluster.setCentroid(new Point(new double[] { centroidX, centroidY }));
             }
 
             if (!assignmentsChanged) {
