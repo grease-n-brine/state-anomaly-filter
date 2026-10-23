@@ -82,10 +82,14 @@ public class KMeansClustering {
         int[] assignments = new int[records.size()];
         Arrays.fill(assignments, -1);
 
+        // Get the dimension count from the dataset
+        int dimensions = records.get(0).getDimension();
+
         for (int iteration = 0; iteration < maxIterations; iteration++) {
             boolean assignmentsChanged = false;
-            double[] sumX = new double[k];
-            double[] sumY = new double[k];
+            
+            // Replaced sumX/sumY with a 2D array [k clusters][n dimensions]
+            double[][] sums = new double[k][dimensions];
             int[] counts = new int[k];
 
             for (int i = 0; i < records.size(); i++) {
@@ -101,11 +105,14 @@ public class KMeansClustering {
                     assignments[i] = nearestClusterID;
                 }
 
-                sumX[nearestClusterID] += record.getX();
-                sumY[nearestClusterID] += record.getY();
+                // Accumulate coordinate values across all dimensions
+                for (int d = 0; d < dimensions; d++) {
+                    sums[nearestClusterID][d] += record.get(d);
+                }
                 counts[nearestClusterID]++;
             }
 
+            // Recalculate N-dimensional centroids
             for (Cluster cluster : clusters) {
                 int clusterId = cluster.getId();
 
@@ -113,9 +120,13 @@ public class KMeansClustering {
                     continue;
                 }
 
-                double centroidX = sumX[clusterId] / counts[clusterId];
-                double centroidY = sumY[clusterId] / counts[clusterId];
-                cluster.setCentroid(new Point(new double[] { centroidX, centroidY }));
+                double[] newCentroidCoords = new double[dimensions];
+
+                for (int d = 0; d < dimensions; d++) {
+                    newCentroidCoords[d] = sums[clusterId][d] / counts[clusterId];
+                }
+                
+                cluster.setCentroid(new Point(newCentroidCoords));
             }
 
             if (!assignmentsChanged) {
