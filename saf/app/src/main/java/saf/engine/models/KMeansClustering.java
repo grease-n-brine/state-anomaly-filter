@@ -24,8 +24,16 @@ public class KMeansClustering {
     }
 
     public double euclideanDistance(Point r1, Point r2) {
-        return Math.sqrt(Math.pow(r1.getX() - r2.getX(), 2) + 
-                        Math.pow(r1.getY() - r2.getY(), 2));
+        if (dimensionMismatch(r1, r2)) {
+            throw new IllegalArgumentException("Points have different dimensions.");
+        }
+        double sumOfSquares = 0.0;
+
+        for (int i = 0; i < r1.getDimension(); i++) {
+            double diff = r1.get(i) - r2.get(i);
+            sumOfSquares += diff * diff;
+        }
+        return Math.sqrt(sumOfSquares);
     }
 
     private void initializeCentroids() {
@@ -74,10 +82,14 @@ public class KMeansClustering {
         int[] assignments = new int[records.size()];
         Arrays.fill(assignments, -1);
 
+        // Get the dimension count from the dataset
+        int dimensions = records.get(0).getDimension();
+
         for (int iteration = 0; iteration < maxIterations; iteration++) {
             boolean assignmentsChanged = false;
-            double[] sumX = new double[k];
-            double[] sumY = new double[k];
+            
+            // Replaced sumX/sumY with a 2D array [k clusters][n dimensions]
+            double[][] sums = new double[k][dimensions];
             int[] counts = new int[k];
 
             for (int i = 0; i < records.size(); i++) {
@@ -93,11 +105,14 @@ public class KMeansClustering {
                     assignments[i] = nearestClusterID;
                 }
 
-                sumX[nearestClusterID] += record.getX();
-                sumY[nearestClusterID] += record.getY();
+                // Accumulate coordinate values across all dimensions
+                for (int d = 0; d < dimensions; d++) {
+                    sums[nearestClusterID][d] += record.get(d);
+                }
                 counts[nearestClusterID]++;
             }
 
+            // Recalculate N-dimensional centroids
             for (Cluster cluster : clusters) {
                 int clusterId = cluster.getId();
 
@@ -105,14 +120,22 @@ public class KMeansClustering {
                     continue;
                 }
 
-                double centroidX = sumX[clusterId] / counts[clusterId];
-                double centroidY = sumY[clusterId] / counts[clusterId];
-                cluster.setCentroid(new Point(new double[] { centroidX, centroidY }));
+                double[] newCentroidCoords = new double[dimensions];
+
+                for (int d = 0; d < dimensions; d++) {
+                    newCentroidCoords[d] = sums[clusterId][d] / counts[clusterId];
+                }
+                
+                cluster.setCentroid(new Point(newCentroidCoords));
             }
 
             if (!assignmentsChanged) {
                 break;
             }
         }
+    }
+
+    private boolean dimensionMismatch(Point p1, Point p2) {
+        return p1.getDimension() != p2.getDimension();
     }
 }
