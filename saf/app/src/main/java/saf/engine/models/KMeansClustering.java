@@ -24,8 +24,16 @@ public class KMeansClustering {
     }
 
     public double euclideanDistance(Point r1, Point r2) {
-        return Math.sqrt(Math.pow(r1.getX() - r2.getX(), 2) + 
-                        Math.pow(r1.getY() - r2.getY(), 2));
+        if (dimensionMismatch(r1, r2)) {
+            throw new IllegalArgumentException("Points have different dimensions.");
+        }
+        double sumOfSquares = 0.0;
+
+        for (int i = 0; i < r1.getDimension(); i++) {
+            double diff = r1.get(i) - r2.get(i);
+            sumOfSquares += diff * diff;
+        }
+        return Math.sqrt(sumOfSquares);
     }
 
     private void initializeCentroids() {
