@@ -115,4 +115,8 @@ public class KMeansClustering {
             }
         }
     }
+
+    private boolean dimensionMismatch(Point p1, Point p2) {
+        return p1.getDimension() != p2.getDimension();
+    }
 }
