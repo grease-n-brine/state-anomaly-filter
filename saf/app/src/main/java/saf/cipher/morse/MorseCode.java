@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MorseCode {
-    enum MorseSymbol {
+    public enum MorseSymbol {
         DOT,
         DASH
     }
@@ -40,5 +40,9 @@ public class MorseCode {
         DECODE_MAP.put(new MorseSymbol[]{MorseSymbol.DASH, MorseSymbol.DOT, MorseSymbol.DOT, MorseSymbol.DASH}, 'X');
         DECODE_MAP.put(new MorseSymbol[]{MorseSymbol.DASH, MorseSymbol.DOT, MorseSymbol.DASH, MorseSymbol.DASH}, 'Y');
         DECODE_MAP.put(new MorseSymbol[]{MorseSymbol.DASH, MorseSymbol.DASH, MorseSymbol.DOT, MorseSymbol.DOT}, 'Z');
+    }
+
+    public static Character decode(MorseSymbol[] symbols) {
+        return DECODE_MAP.getOrDefault(symbols, '?');
     }
 }
