@@ -45,4 +45,12 @@ public class MorseCode {
     public static Character decode(MorseSymbol[] symbols) {
         return DECODE_MAP.getOrDefault(symbols, '?');
     }
+
+    public static String returnDotString() {
+        return DOT;
+    }
+
+    public static String returnDashString() {
+        return DASH;
+    }
 }
